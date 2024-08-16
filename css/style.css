@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+:root {
+  --blue: #80d215;
+  --blue-accent: #258227;
+  --pink: #a71ad2;
+  --dark-grey: #5a5975;
+  --black: #2C3A47;
+  --white: #000000;
+  --lightGrey: #fac800;
+  --radius: 10px;
+  --card-bg: var(--lightGrey);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--white);
+  color: var(--black); /* Añadido para asegurar color de texto en todos los casos */
+}
+
+img {
+  max-width: 100%;
+}
+
+header.main {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 1em;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  text-align: center;
+}
+
+header.main .toggle {
+  justify-self: flex-end;
+}
+
+header.main h1 {
+  margin: 0;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.subtitle {
+  font-size: 2rem;
+}
+
+.main-container {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+}
+
+.padding-y-100 {
+  padding-top: 7.25rem;
+  padding-bottom: 7.25rem;
+}
+
+.padding {
+  padding-inline-start: 1.25rem;
+  padding-inline-end: 1.25rem;
+  padding-block-start: 1rem;
+  padding-block-end: 1rem;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  column-gap: 1em;
+}
+
+.project img {
+  align-self: center;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 20px 20px 60px var(--card-bg),
+              -20px -20px 60px var(--card-bg);
+}
+
+#dark-toggle {
+  display: none;
+}
+
+#dark-toggle + label {
+  cursor: pointer;
+  --toggleHeight: 1.5rem;
+  display: inline-block;
+  width: calc(var(--toggleHeight) * 2);
+  height: var(--toggleHeight);
+  border-radius: var(--radius);
+  background-color: var(--blue-accent);
+  position: relative;
+  margin-right: 0.4rem;
+}
+
+#dark-toggle + label::after {
+  --size: calc(var(--toggleHeight) * 1.33);
+  position: absolute;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: var(--pink);
+  left: calc((var(--size) - var(--toggleHeight)) / 2 * -1);
+  top: calc((var(--size) - var(--toggleHeight)) / 2 * -1);
+  transition: all 0.2s ease-in;
+}
+
+#dark-toggle:checked + label::after {
+  left: calc(100% - (var(--size) - var(--toggleHeight) / 2));
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.force-light) {
+    --blue: #071e3d;
+    --blue-accent: #546de5;
+    --pink: #f8a5c2;
+    --dark-grey: #596275;
+    --black: #2C3A47;
+    --white: #f6e9e9;
+    --radius: 10px; /* Corregido de --radus a --radius */
+    --card-bg: var(--blue);
+    background-color: var(--black);
+    color: var(--white);
+  }
+}
+
+body.force-dark {
+  --blue: #000000;
+  --blue-accent: #4a0c10;
+  --pink: #225206;
+  --dark-grey: #596275;
+  --black: #2C3A47;
+  --white: #f6e9e9;
+  --radius: 10px; /* Corregido de --radus a --radius */
+  --card-bg: var(--blue);
+  background-color: var(--black);
+  color: var(--white);
+}
